@@ -8,8 +8,13 @@ describe('Funcionalidade Cadastro', () => {
     });
     
     it('Deve completar o cadastro com sucesso', () => {
-        cy.get('[data-qa="signup-name"]').type(faker.person.firstName())
-        cy.get('[data-qa="signup-email"]').type(faker.internet.email())
+
+        let nomeFaker = faker.person.firstName()
+        let emailFaker = faker.internet.email(nomeFaker)
+
+
+        cy.get('[data-qa="signup-name"]').type(nomeFaker)
+        cy.get('[data-qa="signup-email"]').type(emailFaker)
         cy.get('[data-qa="signup-button"]').click()
 
         cy.get('[data-qa="password"]').type('teste@teste')
